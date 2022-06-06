@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hangtalk.webapi.mapper.UserDAO">
+    <sql id="user_info">
+        id, name, phone, sex, username, password, signature, avatar,
+        friendId, noticeId
+    </sql>
+    <parameterMap id="register_user_map" type="com.hangtalk.webapi.DO.RegisterUserDO">
+        <parameter property="name" />
+        <parameter property="avatar" />
+        <parameter property="password" />
+        <parameter property="username" />
+        <parameter property="signature" />
+        <parameter property="sex" />
+        <parameter property="phone" />
+    </parameterMap>
+
+    <select id="getUserById" parameterType="java.lang.Long" resultType="com.hangtalk.webapi.entry.User">
+        select
+        <include refid="user_info"></include>
+        from user
+        where id = #{id}
+    </select>
+
+    <select id="getUserByPassword" parameterType="java.lang.String" resultType="com.hangtalk.webapi.entry.User">
+        select
+        <include refid="user_info"></include>
+        from user
+        where username = #{username}
+        and password = #{password}
+    </select>
+
+    <select id="getAllUser" resultType="com.hangtalk.webapi.entry.User">
+        select
+        <include refid="user_info"></include>
+        from user
+    </select>
+
+    <insert id="registerUser" parameterMap="register_user_map">
+        insert into user
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            signature,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="avatar != null">
+                #{avatar},
+            </if>
+            <if test="username != null">
+                #{username},
+            </if>
+            <if test="password != null">
+                #{password},
+            </if>
+            <if test="sex != null">
+                #{sex},
+            </if>
+            <if test="phone != null">
+                #{phone},
+            </if>
+            #{signature},
+        </trim>
+    </insert>
+</mapper>
