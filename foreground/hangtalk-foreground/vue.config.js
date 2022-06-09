@@ -1,4 +1,4 @@
-const { defineConfig } = require("@vue/cli-service");
+const { defineConfig } = require('@vue/cli-service');
 module.exports = defineConfig({
   pages: {
     app: {
@@ -13,7 +13,6 @@ module.exports = defineConfig({
   css: {
     loaderOptions: {
       css: {},
-      less: {},
     },
   },
 });
