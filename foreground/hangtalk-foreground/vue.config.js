@@ -1,5 +1,7 @@
-const { defineConfig } = require('@vue/cli-service');
-module.exports = defineConfig({
+const resolve = require('path');
+
+
+module.exports = {
   pages: {
     app: {
       entry: 'src/main.ts',
@@ -15,4 +17,4 @@ module.exports = defineConfig({
       css: {},
     },
   },
-});
+}
