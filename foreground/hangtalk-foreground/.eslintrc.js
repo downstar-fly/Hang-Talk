@@ -23,6 +23,7 @@ module.exports = {
     'vue/name-property-casing': ['error', 'PascalCase'],
     'vue/no-v-html': 'off',
     'vue/no-unused-components': 'off',
+    'vue/html-indent': 'off',
     'accessor-pairs': 2,
     'arrow-spacing': [2, {
       'before': true,
@@ -43,7 +44,7 @@ module.exports = {
     'constructor-super': 2,
     'curly': [2, 'multi-line'],
     'dot-location': [2, 'property'],
-    'eol-last': 2,
+    'eol-last': 0,
     'eqeqeq': ['error', 'always', { 'null': 'ignore' }],
     'generator-star-spacing': [2, {
       'before': true,
@@ -126,7 +127,7 @@ module.exports = {
     'no-sparse-arrays': 2,
     'no-this-before-super': 2,
     'no-throw-literal': 2,
-    'no-trailing-spaces': 2,
+    'no-trailing-spaces': 0,
     'no-undef': 2,
     'no-undef-init': 2,
     'no-unexpected-multiline': 2,

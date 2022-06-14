@@ -33,7 +33,7 @@
 
 "@ant-design/icons-vue@^6.1.0":
   "integrity" "sha512-EX6bYm56V+ZrKN7+3MT/ubDkvJ5rK/O2t380WFRflDcVFgsvl3NLH7Wxeau6R8DbrO5jWR6DSTC3B6gYFp77AA=="
-  "resolved" "http://npm.h3yun.net:4873/@ant-design%2ficons-vue/-/icons-vue-6.1.0.tgz"
+  "resolved" "https://registry.npmmirror.com/@ant-design/icons-vue/-/icons-vue-6.1.0.tgz"
   "version" "6.1.0"
   dependencies:
     "@ant-design/colors" "^6.0.0"
