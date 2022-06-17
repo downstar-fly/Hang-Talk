@@ -1,5 +1,5 @@
 const resolve = require('path');
-
+const env = require('./build/config');
 
 module.exports = {
   pages: {
@@ -8,6 +8,18 @@ module.exports = {
       template: 'public/index.html',
       filename: 'index.html',
       chunks: ['app', 'vendors'],
+    },
+  },
+  devServer: {
+    hot: true,
+    port: env.port,
+    proxy: {
+      '/': {
+        target: env.proxyApi,
+        credentials: false,
+        secure: false,
+        changeOrigin: true,
+      },
     },
   },
   transpileDependencies: true,

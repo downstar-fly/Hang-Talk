@@ -34,28 +34,50 @@
                     </a-input>
                     <div class="border-btm" />
                 </div>
+                <div class="register-password" v-if="isRegisterMode">
+                    <a-input
+                        default-value="确认密码"
+                        :value="password"
+                        type="password"
+                        :allow-clear="true"
+                        @change="onPasswordChange"
+                    >
+                        <template #prefix>
+                            <lock-outlined class="lock-outlined" />
+                        </template>
+                    </a-input>
+                    <div class="border-btm" />
+                </div>
                 <div class="action-change">
-                    <span>
+                    <span v-if="!isRegisterMode">
                         还没有账号？
                         <a class="a-tag" @click="toRegisterPage">注册</a>
                     </span>
-                    <span>
+                    <span v-if="!isLoginMode">
+                        <a class="a-tag" @click="toLoginPage">去登录</a>
+                    </span>
+                    <span v-if="!isResetMode">
                         <a class="a-tag" @click="toResetPassword">忘记密码？</a>
                     </span>
+                </div>
+                <div class="action">
+
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script lang="ts">
-import { Input as AInput } from 'ant-design-vue';
+import { Input as AInput, Button as AButton } from 'ant-design-vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { LoginTitle, LoginMode } from './index';
 
 export default {
     name: 'LoginPage',
     components: {
         AInput,
+        AButton,
         UserOutlined,
         LockOutlined,
     },
@@ -67,9 +89,22 @@ export default {
     //     }
     // },
     setup() {
-        const title: string = '登录';
+        const title = ref(LoginTitle.Login);
         const account = ref('');
         const password = ref('');
+        const curMode = ref(LoginMode.Login);
+
+        const isRegisterMode = computed(() => {
+            return curMode.value === LoginMode.Register;
+        });
+
+        const isLoginMode = computed(() => {
+            return curMode.value === LoginMode.Login;
+        });
+
+        const isResetMode = computed(() => {
+            return curMode.value === LoginMode.Reset;
+        });
 
         const onAccountChange = (e) => {
             if (e.data) {
@@ -77,7 +112,7 @@ export default {
             } else {
                 account.value = '';
             }
-        }
+        };
 
         const onPasswordChange = (e) => {
             if (e.data) {
@@ -85,26 +120,38 @@ export default {
             } else {
                 password.value = '';
             }
+        };
+
+        const toLoginPage = () => {
+            curMode.value = LoginMode.Login;
+            title.value = LoginTitle.Login;
         }
+
+        const toRegisterPage = () => {
+            console.log('注册');
+            curMode.value = LoginMode.Register;
+            title.value = LoginTitle.Register;
+        };
+
+        const toResetPassword = () => {
+            alert('功能暂未开放');
+            // curMode.value = LoginMode.reset;
+        };
 
         return {
             title,
             account,
             password,
+            isRegisterMode,
+            isLoginMode,
+            isResetMode,
             onPasswordChange,
             onAccountChange,
+            toLoginPage,
+            toRegisterPage,
+            toResetPassword,
         }
     },
-
-    methods: {
-        toRegisterPage() {
-            console.log('注册');
-        },
-
-        toResetPassword() {
-            console.log('重置密码');
-        }
-    }
 }
 </script>
 <style lang="less" scoped>
@@ -144,12 +191,12 @@ source{
     .main-area {
         position: absolute;
         top: 25%;
-        left: 25%;
-        height: 260px;
+        left: 35%;
+        // height: 350px;
         width: 600px;
         background-color: rgba(255,255,255,0.5);
         opacity: 0.75;
-        padding: 20px 10px 0px;
+        padding: 20px 10px 20px 10px;
 
         .login-content {
             .action-change {
@@ -181,7 +228,26 @@ source{
             }
             .login-password {
                 text-align: left;
-                margin-top: 35px;
+                margin-top: 55px;
+                padding-left: 15%;
+                height: 35px;
+
+                /deep/ .lock-outlined svg {
+                    height: 25px;
+                    width: 25px;
+                }
+                /deep/ .ant-input {
+                    width: 80%;
+                    height: 29px;
+                    background-color: transparent;
+                    border: none;
+                    margin-left: 20px;
+                    outline: none;
+                }
+            }
+            .register-password {
+                text-align: left;
+                margin-top: 55px;
                 padding-left: 15%;
                 height: 35px;
 

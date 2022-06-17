@@ -18,7 +18,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/v1/user/")
 @Api(value = "/", tags = {"用户信息"})
 public class UserController {
 
@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @ApiOperation("登录")
-    @PostMapping("/login")
+    @PostMapping("login")
     public ResponseResult<LoginInfo> loginByPassword(@ApiParam(required = true) @RequestParam String username,
                                                      @ApiParam(required = true) @RequestParam String password) {
         ResponseResult<LoginInfo> result = new ResponseResult<>();
