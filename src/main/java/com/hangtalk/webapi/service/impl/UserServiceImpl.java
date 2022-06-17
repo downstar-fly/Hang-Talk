@@ -45,4 +45,14 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    @Override
+    public User loginByPassword(String username, String password) {
+        User user = new User();
+        if (!ObjectUtils.isEmpty(username) && !ObjectUtils.isEmpty(password)) {
+            user = userDAO.getUserByPassword(username, password);
+        }
+
+        return user;
+    }
 }

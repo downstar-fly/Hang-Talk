@@ -16,4 +16,6 @@ public interface UserService {
 
     // 注册
     Boolean registerUser(RegisterUserDO userDo);
+
+    User loginByPassword(String username, String password);
 }

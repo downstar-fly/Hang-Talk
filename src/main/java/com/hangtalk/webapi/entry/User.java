@@ -1,5 +1,8 @@
 package com.hangtalk.webapi.entry;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel
 public class User {
     private Long id;
 
